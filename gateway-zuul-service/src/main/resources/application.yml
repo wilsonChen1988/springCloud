@@ -1,0 +1,12 @@
+server:
+  port: 7600
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.40.1:8761/eureka/
+zuul:
+  routes:
+    customer-service: /user/**
+spring:
+  application:
+    name: gateway-zuul-service
