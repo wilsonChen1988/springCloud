@@ -2,7 +2,7 @@ package com.cn.model;
 
 public class UserBo {
 
-    private String userName;
+    private String userName;//用户名
     private String password;
 
     public String getUserName() {
