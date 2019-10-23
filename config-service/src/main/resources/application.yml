@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wilsonChen1988/springCloud.git
+          username: 362988881@qq.com
+          password: yangchen68963720
+          search-paths: config-file
+server:
+  port: 7900
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.40.1:8761/eureka/
