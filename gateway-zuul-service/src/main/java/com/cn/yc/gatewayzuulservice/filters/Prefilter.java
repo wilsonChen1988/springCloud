@@ -2,17 +2,26 @@ package com.cn.yc.gatewayzuulservice.filters;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.netflix.zuul.exception.ZuulException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * 预处理过滤器
  */
 @Component
 public class Prefilter extends ZuulFilter {
+    @Autowired
+    private Environment ven;
+
     //当前过滤器为什么类型的过滤器
     @Override
     public String filterType() {
@@ -30,7 +39,7 @@ public class Prefilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run(){
         //验证当前用户是否登入如果未登入提示登入
         // RequestContext 共享信息   上下文
         RequestContext ctx =RequestContext.getCurrentContext();
@@ -43,13 +52,16 @@ public class Prefilter extends ZuulFilter {
             ctx.setSendZuulResponse(false);
             ctx.setResponseBody("{\"msg\":\"401, stop 1 .\"}");
         }*/
-         String token =request.getHeader("token");
-        if(token == null || token.equals("")){
-            ctx.setSendZuulResponse(false);// 无需再继续执行执行返回客户端
-            ctx.setResponseStatusCode(401);//响应编码 401 为无权限
-            ctx.setResponseBody("{\"msg\":\"401, pls login first.\"}");//提示前端
-            return "access denied";
-        }
+           /* log.info("=================="+token+"===============");*/
+          System.out.println(ven.getProperty("token"));
+             String token =request.getHeader("token");
+             if(token == null || token.equals("")){
+                 ctx.setSendZuulResponse(false);// 无需再继续执行执行返回客户端
+                 ctx.setResponseStatusCode(401);//响应编码 401 为无权限
+                 ctx.setResponseBody("{\"msg\":\"401, pls login first.\"}");//提示前端
+                 return "access denied";
+             }
+
         return "pass";
 
     }

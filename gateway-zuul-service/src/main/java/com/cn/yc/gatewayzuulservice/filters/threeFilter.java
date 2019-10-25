@@ -28,7 +28,7 @@ public class threeFilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run()   {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         //根据prefiter 获取 是否执行  通过 filterOrder 顺序关系执行 当 key =1 时 secondFilter 就不在被执行

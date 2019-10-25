@@ -7,6 +7,3 @@ eureka:
 zuul:
   routes:
     customer-service: /user/**
-spring:
-  application:
-    name: gateway-zuul-service
