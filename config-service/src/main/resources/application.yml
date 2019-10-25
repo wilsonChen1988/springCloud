@@ -8,7 +8,6 @@ spring:
           uri: https://github.com/wilsonChen1988/springCloud.git
           username: 362988881@qq.com
           password: yangchen68963720
-          search-paths: config-file
 server:
   port: 7900
 eureka:

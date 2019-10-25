@@ -5,12 +5,9 @@ import com.netflix.zuul.context.RequestContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -19,8 +16,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class Prefilter extends ZuulFilter {
-    @Autowired
-    private Environment ven;
+    private Logger log =LoggerFactory.getLogger(Prefilter.class);
+    @Value("${token}")
+    private boolean token;
 
     //当前过滤器为什么类型的过滤器
     @Override
@@ -52,8 +50,7 @@ public class Prefilter extends ZuulFilter {
             ctx.setSendZuulResponse(false);
             ctx.setResponseBody("{\"msg\":\"401, stop 1 .\"}");
         }*/
-           /* log.info("=================="+token+"===============");*/
-          System.out.println(ven.getProperty("token"));
+         if(!token){
              String token =request.getHeader("token");
              if(token == null || token.equals("")){
                  ctx.setSendZuulResponse(false);// 无需再继续执行执行返回客户端
@@ -61,7 +58,7 @@ public class Prefilter extends ZuulFilter {
                  ctx.setResponseBody("{\"msg\":\"401, pls login first.\"}");//提示前端
                  return "access denied";
              }
-
+         }
         return "pass";
 
     }

@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: gateway-zuul-service
-  cloud:
-    config:
-      uri: http://127.0.0.1:7900/
-      #name : config-service
-      profile: dev
-      label: master
