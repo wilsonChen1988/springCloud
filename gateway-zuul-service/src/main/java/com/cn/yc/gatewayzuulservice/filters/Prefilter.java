@@ -6,6 +6,7 @@ import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * 预处理过滤器
  */
 @Component
+@RefreshScope
 public class Prefilter extends ZuulFilter {
     private Logger log =LoggerFactory.getLogger(Prefilter.class);
     @Value("${token}")

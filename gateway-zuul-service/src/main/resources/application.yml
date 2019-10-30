@@ -5,3 +5,6 @@ eureka:
 zuul:
   routes:
     customer-service: /user/**
+management:
+  security:
+    enabled: false
