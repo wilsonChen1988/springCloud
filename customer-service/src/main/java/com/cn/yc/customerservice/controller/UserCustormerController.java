@@ -4,7 +4,6 @@ import com.cn.model.UserBo;
 import com.cn.yc.customerservice.service.UserCoustService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

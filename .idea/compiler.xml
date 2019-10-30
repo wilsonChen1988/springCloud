@@ -7,17 +7,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gateway-zuul-service" />
+        <module name="provider-service" />
         <module name="customer-service" />
         <module name="config-service" />
-        <module name="provider-service" />
+        <module name="capital-server" />
         <module name="eureka-service" />
         <module name="provider-service2" />
-        <module name="config-server-client" />
         <module name="common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="capital-server" target="1.8" />
       <module name="common" target="1.5" />
+      <module name="config-client-server" target="1.8" />
       <module name="config-server-client" target="1.8" />
       <module name="config-service" target="1.8" />
       <module name="customer-service" target="1.8" />
@@ -29,6 +31,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="capital-server" options="-parameters" />
+      <module name="config-client-server" options="-parameters" />
       <module name="config-server-client" options="" />
       <module name="config-service" options="-parameters" />
       <module name="customer-service" options="-parameters" />
